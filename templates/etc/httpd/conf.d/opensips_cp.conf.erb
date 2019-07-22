@@ -1,0 +1,18 @@
+<Directory <%= @opensipscp_folder %>/web>
+  Options Indexes FollowSymLinks MultiViews
+  AllowOverride None
+  Order allow,deny
+  allow from all
+</Directory>
+<Directory <%= @opensipscp_folder %>>
+  Options Indexes FollowSymLinks MultiViews
+  AllowOverride None
+  Order deny,allow
+  deny from all
+</Directory>
+Alias <%= @opensipscp_alias_folder %> <%= @opensipscp_folder %>/web
+
+<DirectoryMatch "<%= @opensipscp_folder %>/web/tools/.*/.*/(template|custom_actions|lib)/">
+  Order deny,allow
+  deny from all
+</DirectoryMatch>
