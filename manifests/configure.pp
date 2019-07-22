@@ -10,6 +10,11 @@ class opensipscp::configure inherits opensipscp {
       content => template('opensipscp/etc/httpd/conf.d/opensips_cp.conf.erb'),
       mode    => '0644',
   }
+  file { '/var/www/html/opensips-cp/config/boxes.global.inc':
+    ensure  => file,
+    mode    => '0644',
+    content => template('opensipscp/var/www/html/opensips-cp/config/boxes.global.inc.php.erb'),
+  }
   augeas { 'enable_gd_php_extension':
     context => '/augeas/files/etc/php.d/gd.ini',
     changes => [

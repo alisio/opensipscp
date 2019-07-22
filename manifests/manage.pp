@@ -17,9 +17,9 @@ class opensipscp::manage {
     password       => $opensipscp::db_opensips_pw,
     host           => $opensipscp::db_server_ip,
     grant          => ['ALL'],
-    sql            => '/var/www/html/opensips-cp/config/db_schema.mysql',
+    sql            => "${opensipscp::opensipscp_folder}/opensips_controlpanel.mysql",
     import_cat_cmd => 'cat',
     import_timeout => 900,
-    require        => Service['mariadb'],
+    require        => [Service['mariadb'],File["${opensipscp::opensipscp_folder}/opensips_controlpanel.mysql"]]
   }
 }

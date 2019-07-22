@@ -13,20 +13,20 @@ class opensipscp::install inherits opensipscp {
   realize(Package['epel-release'])
   realize(Package[$opensipscp::packages])
   exec { 'install_opensipscp':
-    command => 'wget https://codeload.github.com/OpenSIPS/opensips-cp/zip/8.2.4 &&\
-                unzip -o /var/www/html/8.2.4 && \
-                rsync -av opensips-cp-8.2.4/ opensips-cp/',
+    command => "wget https://codeload.github.com/OpenSIPS/opensips-cp/zip/${opensipscp::opensipscp_version} &&\
+                unzip -o /var/www/html/${opensipscp::opensipscp_version} && \
+                rsync -av opensips-cp-${opensipscp::opensipscp_version}/ opensips-cp/ && \
+                chown -R apache:apache opensips-cp/",
     cwd     => '/var/www/html',
-    unless  => 'test -d /var/www/html/opensips-cp',
+    unless  => "test -d ${opensipscp::opensipscp_folder}",
     path    => '/usr/bin:/usr/sbin:/bin:/usr/local/bin',
     require => Package[$opensipscp::packages]
   }
-  -> file { '/var/www/html/opensips-cp/':
-    ensure  => directory,
-    recurse => 'remote',
+  file { "${opensipscp::opensipscp_folder}/opensips_controlpanel.mysql":
+    ensure  => file,
     mode    => '0644',
     owner   => 'apache',
     group   => 'apache',
-    source  => 'puppet:///modules/opensipscp/var/www/html/opensips-cp/',
+    content => template('opensipscp/opensips_controlpanel.mysql.erb'),
   }
 }
