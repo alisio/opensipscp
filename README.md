@@ -4,8 +4,6 @@
 
 1. [Description](#description)
 2. [Setup - The basics of getting started with opensipscp](#setup)
-    * [What opensipscp affects](#what-opensipscp-affects)
-    * [Setup requirements](#setup-requirements)
     * [Beginning with opensipscp](#beginning-with-opensipscp)
 3. [Usage - Configuration options and additional functionality](#usage)
 4. [Limitations - OS compatibility, etc.](#limitations)
@@ -17,7 +15,7 @@ This module install OpenSIPS Control Panel, a PHP Web Portal for provisioning Op
 
 ## Setup
 
-This module OpenSIPS CP Web Portal, but not OpenSIPS sip proxy.
+This module OpenSIPS CP Web Portal and it does not include OpenSIPS sip proxy. The opensips must be installed some other way (e.g: using alisio-opensips module)
 
 This module writes to the mysql database so be careful if installing on top of an existent OpenSIPS installation. You should consider backup your database first.
 
@@ -30,45 +28,33 @@ To install OpenSIPS CP with the default module options, simply include the class
 include opensipscp
 ```
 
+To install OpenSIPS control panel besides OpenSIPS you can use my other module alisio-opensips.
+
+```
+class{'opensips':} -> class{'opensipscp':}
+```
+
 ## Usage
 
 Include usage examples for common use cases in the **Usage** section. Show your users how to use your module to solve problems, and be sure to include code examples. Include three to five examples of the most important or common tasks a user can accomplish with your module. Show users how to accomplish more complex tasks that involve different types, classes, and functions working in tandem.
 
-## Reference
+You can use the following parameters to customize your installation.
 
-This section is deprecated. Instead, add reference information to your code as Puppet Strings comments, and then use Strings to generate a REFERENCE.md in your module. For details on how to add code comments and generate documentation with Strings, see the Puppet Strings [documentation](https://puppet.com/docs/puppet/latest/puppet_strings.html) and [style guide](https://puppet.com/docs/puppet/latest/puppet_strings_style.html)
-
-If you aren't ready to use Strings yet, manually create a REFERENCE.md in the root of your module directory and list out each of your module's classes, defined types, facts, functions, Puppet tasks, task plans, and resource types and providers, along with the parameters for each.
-
-For each element (class, defined type, function, and so on), list:
-
-  * The data type, if applicable.
-  * A description of what the element does.
-  * Valid values, if the data type doesn't make it obvious.
-  * Default value, if any.
-
-For example:
-
-```
-### `pet::cat`
-
-#### Parameters
-
-##### `meow`
-
-Enables vocalization in your cat. Valid options: 'string'.
-
-Default: 'medium-loud'.
-```
+* $db_opensips_db The opensips database. It must match your current opensips installation. Default value: 'opensips'
+* $db_opensips_user The database user. Default Value: 'opensips'
+* $db_opensips_pw The password for the opensips database user. Default value 'opensipsrw'
+* $db_server_ip The opensips database host. Default value: 'localhost'
+* $opensipscp_admin_user The initial OpenSIPS Control Panel GUI admin user. Default value:'admin'
+* $opensipscp_admin_pw The initial OpenSIPS Control Panel GUI admin password. Default value: 'opensips'
+* $opensipscp_alias_folder  The apache alias for the OpenSIPS Control Panel. Default Value: '/cp'
 
 ## Limitations
 
-In the Limitations section, list any incompatibilities, known issues, or other warnings.
+This module does not provision an OpenSIPS proxy server.
+
+This module was tested with puppet 5 running on Centos7.
+
 
 ## Development
 
-In the Development section, tell other users the ground rules for contributing to your project and how they should submit their work.
-
-## Release Notes/Contributors/Etc. **Optional**
-
-If you aren't using changelog, put your release notes here (though you should consider using changelog). You can also add any additional sections you feel are necessary or important to include here. Please use the `## ` header.
+Please follow the licence guidelines
