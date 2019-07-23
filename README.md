@@ -13,11 +13,13 @@
 
 ## Description
 
-Briefly tell users why they might want to use your module. Explain what your module does and what kind of problems users can solve with it.
-
-This should be a fairly short description helps the user decide if your module is what they want.
+This module install OpenSIPS Control Panel, a PHP Web Portal for provisioning OpenSIPS SIP server.
 
 ## Setup
+
+This module does not installs OpenSIPS proxy server, only the Web Portal.
+It is recommended to install this module alongside opensips  its companion alisio-opensips module.
+ adds content do the mysql database. Be careful if installing on top of an existent OpenSIPS installation. You should consider backup your database first.
 
 ### What opensipscp affects **OPTIONAL**
 
