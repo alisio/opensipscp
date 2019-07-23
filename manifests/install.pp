@@ -5,13 +5,8 @@
 # @example
 #   include opensipscp::install
 class opensipscp::install inherits opensipscp {
-  @package {'epel-release':}
-  @package { $opensipscp::packages:
-    ensure  => installed,
-    require => Package['epel-release'],
-  }
-  realize(Package['epel-release'])
-  realize(Package[$opensipscp::packages])
+  ensure_packages(['epel-release',$opensipscp::packages])
+  # ensure_packages($opensipscp::packages)
   exec { 'install_opensipscp':
     command => "wget https://codeload.github.com/OpenSIPS/opensips-cp/zip/${opensipscp::opensipscp_version} &&\
                 unzip -o /var/www/html/${opensipscp::opensipscp_version} && \

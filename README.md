@@ -17,29 +17,18 @@ This module install OpenSIPS Control Panel, a PHP Web Portal for provisioning Op
 
 ## Setup
 
-This module does not installs OpenSIPS proxy server, only the Web Portal.
-It is recommended to install this module alongside opensips  its companion alisio-opensips module.
- adds content do the mysql database. Be careful if installing on top of an existent OpenSIPS installation. You should consider backup your database first.
+This module OpenSIPS CP Web Portal, but not OpenSIPS sip proxy.
 
-### What opensipscp affects **OPTIONAL**
+This module writes to the mysql database so be careful if installing on top of an existent OpenSIPS installation. You should consider backup your database first.
 
-If it's obvious what your module touches, you can skip this section. For example, folks can probably figure out that your mysql_instance module affects their MySQL instances.
-
-If there's more that they should know about, though, this is the place to mention:
-
-* Files, packages, services, or operations that the module will alter, impact, or execute.
-* Dependencies that your module automatically installs.
-* Warnings or other important notices.
-
-### Setup Requirements **OPTIONAL**
-
-If your module requires anything extra before setting up (pluginsync enabled, another module, etc.), mention it here.
-
-If your most recent release breaks compatibility or requires particular steps for upgrading, you might want to include an additional "Upgrading" section here.
 
 ### Beginning with opensipscp
 
-The very basic steps needed for a user to get the module up and running. This can include setup steps, if necessary, or it can be an example of the most basic use of the module.
+To install OpenSIPS CP with the default module options, simply include the class in your manifest.
+
+```
+include opensipscp
+```
 
 ## Usage
 
