@@ -40,13 +40,13 @@ Include usage examples for common use cases in the **Usage** section. Show your 
 
 You can use the following parameters to customize your installation.
 
-* $db_opensips_db The opensips database. It must match your current opensips installation. Default value: 'opensips'
-* $db_opensips_user The database user. Default Value: 'opensips'
-* $db_opensips_pw The password for the opensips database user. Default value 'opensipsrw'
-* $db_server_ip The opensips database host. Default value: 'localhost'
-* $opensipscp_admin_user The initial OpenSIPS Control Panel GUI admin user. Default value:'admin'
-* $opensipscp_admin_pw The initial OpenSIPS Control Panel GUI admin password. Default value: 'opensips'
-* $opensipscp_alias_folder  The apache alias for the OpenSIPS Control Panel. Default Value: '/cp'
+* `$db_opensips_db` The opensips database. It must match your current opensips installation. Default value: 'opensips'
+* `$db_opensips_user` The database user. Default Value: 'opensips'
+* `$db_opensips_pw` The password for the opensips database user. Default value 'opensipsrw'
+* `$db_server_ip` The opensips database host. Default value: 'localhost'
+* `$opensipscp_admin_user` The initial OpenSIPS Control Panel GUI admin user. Default value:'admin'
+* `$opensipscp_admin_pw` The initial OpenSIPS Control Panel GUI admin password. Default value: 'opensips'
+* `$opensipscp_alias_folder`  The apache alias for the OpenSIPS Control Panel. Default Value: '/cp'
 
 ## Limitations
 
