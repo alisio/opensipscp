@@ -28,11 +28,11 @@ To install OpenSIPS CP with the default module options, simply include the class
 include opensipscp
 ```
 
-To install OpenSIPS control panel besides OpenSIPS you can use my other module alisio-opensips.
+### Setup Requirements
 
-```
-class{'opensips':} -> class{'opensipscp':}
-```
+* Mysql database
+* Apache
+* opensips
 
 ## Usage
 

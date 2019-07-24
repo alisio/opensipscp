@@ -5,21 +5,23 @@
 # @example
 #   include opensipscp::manage
 class opensipscp::manage {
-  @service { ['httpd','mariadb']:
-    ensure     => running,
-    enable     => true,
-    hasrestart => true,
-    hasstatus  => true,
+  exec { 'manage httpd service':
+    command => 'systemctl enable httpd; systemctl start httpd',
+    unless  => 'systemctl status httpd',
+    path => '/usr/bin:/usr/sbin:/bin:/usr/local/bin',
   }
-  realize([Service['httpd'],Service['mariadb']])
-  mysql::db { $opensipscp::db_opensips_db:
-    user           => $opensipscp::db_opensips_user,
-    password       => $opensipscp::db_opensips_pw,
-    host           => $opensipscp::db_server_ip,
-    grant          => ['ALL'],
-    sql            => "${opensipscp::opensipscp_folder}/opensips_controlpanel.mysql",
-    import_cat_cmd => 'cat',
-    import_timeout => 900,
-    require        => [Service['mariadb'],File["${opensipscp::opensipscp_folder}/opensips_controlpanel.mysql"]]
+  exec { 'manage mariadb service':
+    command => 'systemctl enable mariadb; systemctl start mariadb',
+    unless  => 'systemctl status mariadb',
+    path => '/usr/bin:/usr/sbin:/bin:/usr/local/bin',
+  }
+  exec { 'insert opensips cp tables into database':
+    command => "mysql -u${opensipscp::db_opensips_user} -p${opensipscp::db_opensips_pw} \
+                ${opensipscp::db_opensips_db} < ${opensipscp::opensipscp_folder}/opensips_controlpanel.mysql",
+    unless  => "mysql -u${opensipscp::db_opensips_user} -p${opensipscp::db_opensips_pw} ${opensipscp::db_opensips_db} \
+                -e 'SHOW TABLES LIKE \"ocp_admin_privileges\"'| egrep 'ocp_admin_privileges' -q",
+    path    => '/usr/bin:/usr/sbin:/bin:/usr/local/bin',
+    # refreshonly => true,
+    require => [Exec['manage mariadb service'],File["${opensipscp::opensipscp_folder}/opensips_controlpanel.mysql"]]
   }
 }

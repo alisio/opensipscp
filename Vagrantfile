@@ -70,6 +70,6 @@ Vagrant.configure("2") do |config|
     sudo yum install -y augeas git puppet-agent vim-enhanced --nogpgcheck
     # /opt/puppetlabs/bin/puppet module install alisio-opensips
     ln -s /vagrant /etc/puppetlabs/code/environments/production/modules/opensipscp
-    /opt/puppetlabs/bin/puppet apply /etc/puppetlabs/code/environments/production/modules/opensipscp/tests/init.pp
+    # /opt/puppetlabs/bin/puppet apply /etc/puppetlabs/code/environments/production/modules/opensipscp/tests/init.pp
   SHELL
 end
