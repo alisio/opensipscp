@@ -13,6 +13,10 @@
 #   The database user. Default Value: 'opensips'
 # @db_opensips_pw
 #   The password for the opensips database user. Default value 'opensipsrw'
+# @db_root_user
+#  The database admin user. It is used to insert data into opensips database.
+# @db_root_pw
+#  The database root password. It is used to insert data into opensips database.
 # @db_server_ip
 #   The opensips database host. Default value: 'localhost'
 # @opensipscp_admin_user
@@ -26,6 +30,8 @@ class opensipscp (
   $db_opensips_db           = $opensipscp::params::db_opensips_db,
   $db_opensips_user         = $opensipscp::params::db_opensips_user,
   $db_opensips_pw           = $opensipscp::params::db_opensips_pw,
+  $db_root_user             = $opensipscp::params::db_root_user,
+  $db_root_pw               = $opensipscp::params::db_root_pw,
   $db_server_ip             = $opensipscp::params::db_server_ip,
   $opensipscp_admin_user    = $opensipscp::params::opensipscp_admin_user,
   $opensipscp_admin_pw      = $opensipscp::params::opensipscp_admin_pw,

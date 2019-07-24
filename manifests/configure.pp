@@ -5,10 +5,12 @@
 # @example
 #   include opensipscp::configure
 class opensipscp::configure inherits opensipscp {
+  require opensipscp::install
   file { '/etc/httpd/conf.d/opensips_cp.conf':
       ensure  => file,
       content => template('opensipscp/etc/httpd/conf.d/opensips_cp.conf.erb'),
       mode    => '0644',
+      require => Opensipscp::Packages[$opensipscp::packages],
   }
   file { '/var/www/html/opensips-cp/config/boxes.global.inc':
     ensure  => file,
@@ -40,5 +42,20 @@ class opensipscp::configure inherits opensipscp {
     user    => 'root',
     hour    => '*',
     minute  => 10,
+  }
+
+  if ! defined(Mysql::Db[$opensipscp::db_opensips_db]) {
+    class { 'mysql::server':
+      root_password => $opensipscp::db_root_pw,
+    }
+    -> mysql::db { $opensipscp::db_opensips_db :
+      user           => $opensipscp::db_opensips_user,
+      password       => $opensipscp::db_opensips_pw,
+      host           => $opensipscp::db_server_ip,
+      grant          => ['ALL'],
+      sql            => "${opensipscp::opensipscp_folder}/opensips_controlpanel.mysql",
+      import_cat_cmd => 'cat',
+      import_timeout => 900,
+    }
   }
 }
