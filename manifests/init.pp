@@ -7,6 +7,12 @@
 # To install OpenSIPS control panel besides OpenSIPS you can use my other module alisio-opensips.
 # class{'opensips':} -> class{'opensipscp':}
 #
+# To install OpenSIPS proxy and OpenSIPS control with default values
+#
+# class{'opensips':}
+# class{'opensipscp':}
+# Class['opensips'] -> Class['opensipscp']
+#
 # @db_opensips_db
 #   The opensips database. It must match your current opensips installation. Default value: 'opensips'
 # @db_opensips_user

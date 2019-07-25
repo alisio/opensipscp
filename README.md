@@ -27,6 +27,15 @@ To install OpenSIPS CP with the default module options, simply include the class
 ```
 include opensipscp
 ```
+To install OpenSIPS proxy and OpenSIPS control with default values
+
+```
+class{'opensips':}
+
+class{'opensipscp':}
+
+Class['opensips'] -> Class['opensipscp']
+```
 
 ### Setup Requirements
 

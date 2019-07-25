@@ -12,7 +12,7 @@ class opensipscp::configure inherits opensipscp {
       mode    => '0644',
       require => Opensipscp::Packages[$opensipscp::packages],
   }
-  file { '/var/www/html/opensips-cp/config/boxes.global.inc':
+  file { '/var/www/html/opensips-cp/config/boxes.global.inc.php':
     ensure  => file,
     mode    => '0644',
     content => template('opensipscp/var/www/html/opensips-cp/config/boxes.global.inc.php.erb'),
