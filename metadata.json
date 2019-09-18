@@ -1,6 +1,6 @@
 {
   "name": "alisio-opensipscp",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "author": "Antonio Alisio de Meneses Cordeiro",
   "summary": "This module install OpenSIPS Control Panel, a PHP Web Portal for provisioning OpenSIPS SIP server.",
   "license": "Apache-2.0",
