@@ -17,6 +17,13 @@ class opensipscp::configure inherits opensipscp {
     mode    => '0644',
     content => template('opensipscp/var/www/html/opensips-cp/config/boxes.global.inc.php.erb'),
   }
+  file { '/var/www/html/opensips-cp/config/tools/users/user_management/local.inc.php':
+    ensure  => file,
+    content => template('opensipscp/var/www/html/opensips-cp/config/tools/users/user_management/local.inc.php.erb'),
+    mode    => '0644',
+    owner   => 'apache',
+    group   => 'apache',
+  }
   augeas { 'enable_gd_php_extension':
     context => '/augeas/files/etc/php.d/gd.ini',
     changes => [
