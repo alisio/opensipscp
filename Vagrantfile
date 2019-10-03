@@ -66,10 +66,14 @@ Vagrant.configure("2") do |config|
   # documentation for more information about their specific syntax and use.
   config.vm.provision "shell", inline: <<-SHELL
     echo timeout=80 >> /etc/yum.conf
-    sudo rpm -Uvh http://yum.puppet.com/puppet5/puppet5-release-el-7.noarch.rpm
+    sudo rpm -Uvh http://yum.puppet.com/puppet6-release-el-7.noarch.rpm
     sudo yum install -y augeas git puppet-agent vim-enhanced --nogpgcheck
-    # /opt/puppetlabs/bin/puppet module install alisio-opensips
-    ln -s /vagrant /etc/puppetlabs/code/environments/production/modules/opensipscp
-    # /opt/puppetlabs/bin/puppet apply /etc/puppetlabs/code/environments/production/modules/opensipscp/tests/init.pp
+    ln -s /vagrant/ /etc/puppetlabs/code/environments/production/modules/opensipscp
+    /opt/puppetlabs/bin/puppet module install alisio-opensips
+    /opt/puppetlabs/bin/puppet module install alisio-rtpengine
+    /opt/puppetlabs/bin/puppet module install puppetlabs-stdlib
+    /opt/puppetlabs/bin/puppet module install puppetlabs-mysql
+    /opt/puppetlabs/bin/puppet apply /etc/puppetlabs/code/environments/production/modules/opensipscp/tests/init.pp
+    /opt/puppetlabs/bin/puppet apply /etc/puppetlabs/code/environments/production/modules/opensipscp/tests/init.pp
   SHELL
 end

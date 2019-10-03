@@ -31,7 +31,7 @@
 	$config->subs_extra = array(
 		"first_name" => array(
 			"header"		=> "Nickname",
-			"info"			=> "User's Nickname to be added to SIP headers",
+			"info"			=> "User's Nickname to be added to the SIP headers",
 			"show_in_main_form" 	=> true,
 			"show_in_add_form" 	=> true,
 			"show_in_edit_form"	=> true,
@@ -43,6 +43,17 @@
 		"email_address" => array(
 			"header"		=> "Email",
 			"info"			=> "User's email address",
+			"show_in_main_form" 	=> true,
+			"show_in_add_form" 	=> true,
+			"show_in_edit_form"	=> true,
+			"is_optional"           => "y",
+			"searchable"            => true,
+			"validation_regex" 	=> "^.*$",
+			"default_value" 	=> NULL,
+		),
+    "rpid" => array(
+			"header"		=> "SIP Alias",
+			"info"			=> "User's SIP Alias to be added to the SIP Headers ",
 			"show_in_main_form" 	=> true,
 			"show_in_add_form" 	=> true,
 			"show_in_edit_form"	=> true,

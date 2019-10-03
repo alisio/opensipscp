@@ -1,5 +1,10 @@
 # Changelog
 
+## Release 0.3.1
+
+- Change vagrantfile provision script
+- Update test manifest for opensips install
+
 ## Release 0.3.0
 
 - Add user management config fields (nickname and email)
